@@ -19,16 +19,16 @@ function calculateInterest() {
 
   if (principal > 0 && !isNaN(rate) && !isNaN(time)) {
     const interest = (principal * rate * time) / 36500;
-    const taxReduction = (interest * taxPercantage) / 100;
+    const taxReduction = interest * (taxPercantage / 100);
     const netInterest = interest - taxReduction;
     const finalAmount = principal + netInterest;
 
     document.getElementById('result').innerHTML = `
             <span class="main-result">
-                Tahmini Vade Sonu Getiri: ${formatCurrency(finalAmount)}
-                <span class="net-income">Net Kazanç: ${formatCurrency(
-                  netInterest
-                )}</span>
+             <span class="net-income">Net Kazanç: ${formatCurrency(
+               netInterest
+             )}</span>   
+            Tahmini Vade Sonu Getiri: ${formatCurrency(finalAmount)}
             </span>
             <ul class="details">
                 <li><strong>Ana Para:</strong> ${formatCurrency(principal)}</li>
@@ -61,7 +61,7 @@ function formatPrincipalInput() {
 }
 
 // Set default values
-document.getElementById('principal').value = formatCurrency(1000);
+document.getElementById('principal').value = formatCurrency(100_000);
 document.getElementById('time').value = 32;
 document.getElementById('rate').value = 50;
 
